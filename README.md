@@ -43,7 +43,7 @@ El proyecto está organizado en tres módulos principales para facilitar la repr
 │   ├── 📁 experimentos_preliminares/
 │   │   └── S2_MAESTRIA_S4_LSTM_13072025.ipynb
 │   ├── N1_S4_MAESTRIA_PROCESAMIENTO.ipynb      # Benchmark de Arquitecturas (Single-Step)
-│   ├── 02_entrenamiento_modelos.ipynb
+│   ├── N2_S4_MAESTRIA_PROCESAMIENTO.ipynb      # Pipeline Final Multi-Step (La Propuesta de Tesis)
 │   └── 03_evaluacion_pruebas.ipynb
 │   # Pipeline completo de Ciencia de Datos:
 │   # - Limpieza: Filtros de elevación (>30°) y outliers.
