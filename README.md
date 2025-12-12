@@ -51,6 +51,8 @@ El proyecto está organizado en tres módulos principales para facilitar la repr
 │
 └── README.md
 
+---
+
 ## 📡 Detalle del Módulo de Adquisición (01_adquisicion_datos)
 Este directorio contiene los scripts Python encargados del Pipeline ETL para construir el dataset crudo a partir de la red de sensores LISN:
 
