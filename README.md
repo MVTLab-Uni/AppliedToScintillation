@@ -40,6 +40,8 @@ El proyecto está organizado en tres módulos principales para facilitar la repr
 │       └── descargar_data_estaciones.ipynb
 │
 ├── 📁 02_metodologia_ds/
+│   ├── 📁 experimentos_preliminares/
+│   │   └── S2_MAESTRIA_S4_LSTM_13072025.ipynb
 │   ├── 01_limpieza_preprocesamiento.ipynb
 │   ├── 02_entrenamiento_modelos.ipynb
 │   └── 03_evaluacion_pruebas.ipynb
@@ -56,25 +58,37 @@ El proyecto está organizado en tres módulos principales para facilitar la repr
 ## 📡 Detalle del Módulo de Adquisición (01_adquisicion_datos)
 Este directorio contiene los scripts Python encargados del Pipeline ETL para construir el dataset crudo a partir de la red de sensores LISN:
 
-*  descargaDATOSANUAL.py (Extracción):
+*  **descargaDATOSANUAL.py (Extracción):**
 
 Implementa el cliente jrodb para conectar con el servidor CKAN del Radio Observatorio de Jicamarca.
 
 Automatiza la descarga masiva de logs anuales y mensuales de estaciones GNSS específicas (Jicamarca, Piura, Huancayo, etc.).
 
-* descomprimirDATOS.py (Transformación Física):
+* **descomprimirDATOS.py (Transformación Física):**
 
 Script de automatización que recorre recursivamente los directorios descargados.
 
 Ejecuta la descompresión por lotes de archivos binarios/logs (.gz, .Z) preparándolos para el procesamiento.
 
-* generarDATASET.py (Parsing y Estructuración):
+* **generarDATASET.py (Parsing y Estructuración):**
 
 Parser Septentrio: Lee e interpreta la estructura de los logs de receptores GNSS.
 
 Conversión Temporal: Transforma formatos de tiempo nativos a datetime estándar UTC.
 
 Extracción de Features: Filtra y extrae las variables críticas (S4, Azimuth, Elevacion, ID_Satelite) y consolida millones de registros en un único archivo CSV ("Data Cruda") listo para la fase de Ciencia de Datos.
+
+## 📓 Cuadernos de Experimentación y Prototipado
+
+* **`S2_MAESTRIA_S4_LSTM_13072025.ipynb` (Prototipo LSTM Base):**
+    Este cuaderno documenta la **fase exploratoria inicial** del modelado predictivo. Su objetivo fue establecer la línea base de rendimiento utilizando una arquitectura LSTM estándar ("Vanilla") antes de evolucionar hacia modelos híbridos o multi-step.
+    
+    **Puntos clave abordados:**
+    * **Sintonización Temporal:** Evaluación de diferentes configuraciones de ventana deslizante (*Window Size*) de 2 a 3 horas frente a horizontes de predicción de 20, 30 y 40 minutos.
+    * **Detección de Fenómenos de Lag:** Identificación del problema de retraso de fase cuando se utilizan ventanas históricas excesivamente largas (>3 horas) sin mecanismos de atención.
+    * **Análisis de Sensibilidad:** Pruebas preliminares sobre el impacto de la normalización y la estructura de las secuencias en la convergencia de la red.
+    * *Nota:* Este archivo sirvió como base empírica para refinar la estrategia de "Gap Control" y definir el horizonte óptimo de 20 minutos utilizado en la versión final del sistema.
+
 
 ## 🛠️ Instalación y Requisitos
 Para ejecutar los cuadernos de este repositorio, se requiere un entorno de Python 3.12+ con las siguientes librerías principales:
