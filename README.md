@@ -1,8 +1,8 @@
 # Tesis de Maestría: Sistema de Pronóstico del Centelleo Ionosférico (S4) con Deep Learning
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange)
-![Status](https://img.shields.io/badge/Status-Tesis_Finalizada-green)
+![Python](https://img.shields.io/badge/Python-3.12%2B-blue)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-2.19-orange)
+![Status](https://img.shields.io/badge/Status-Tesis_Desarrollo-green)
 ![Institution](https://img.shields.io/badge/Universidad-UNI-red)
 
 > **Título:** DESARROLLO DE UN SISTEMA DE PRONÓSTICO DEL CENTELLEO IONOSFÉRICO SOBRE EL PERÚ UTILIZANDO MACHINE LEARNING PARA LA MITIGACIÓN DE PERTURBACIONES EN SEÑALES SATÉLITES.
