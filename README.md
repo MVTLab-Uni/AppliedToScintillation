@@ -42,7 +42,7 @@ El proyecto está organizado en tres módulos principales para facilitar la repr
 ├── 📁 02_metodologia_ds/
 │   ├── 📁 experimentos_preliminares/
 │   │   └── S2_MAESTRIA_S4_LSTM_13072025.ipynb
-│   ├── 01_limpieza_preprocesamiento.ipynb
+│   ├── N1_S4_MAESTRIA_PROCESAMIENTO.ipynb      # Benchmark de Arquitecturas (Single-Step)
 │   ├── 02_entrenamiento_modelos.ipynb
 │   └── 03_evaluacion_pruebas.ipynb
 │   # Pipeline completo de Ciencia de Datos:
@@ -89,6 +89,16 @@ Extracción de Features: Filtra y extrae las variables críticas (S4, Azimuth, E
     * **Análisis de Sensibilidad:** Pruebas preliminares sobre el impacto de la normalización y la estructura de las secuencias en la convergencia de la red.
     * *Nota:* Este archivo sirvió como base empírica para refinar la estrategia de "Gap Control" y definir el horizonte óptimo de 20 minutos utilizado en la versión final del sistema.
 
+* **`N1_S4_MAESTRIA_PROCESAMIENTO.ipynb` (Benchmark de Arquitecturas - Single Step):**
+    Este cuaderno implementa la fase de **validación arquitectónica** utilizando el dataset completo. Se centra en una estrategia de predicción de **un solo paso (Single-Step Forecasting)** para aislar y comparar el rendimiento puro de las diferentes topologías neuronales.
+    
+    **Aportes principales:**
+    * **Benchmark Comparativo:** Evaluación rigurosa entre tres modelos:
+        1.  **Baseline:** LSTM Simple (Vanilla).
+        2.  **Robust:** Weighted LSTM (con función de costo personalizada).
+        3.  **Hybrid:** Morph-LSTM-ELM (Propuesta inicial con regresión analítica).
+    * **Validación de la Función de Costo:** Demuestra empíricamente cómo la *Loss Asimétrica* reduce el error en los picos ($S_4 > 0.6$) comparado con el MSE estándar.
+    * **Resultados:** Genera las métricas comparativas (RMSE Global vs. Event-RMSE) que justifican la elección de la arquitectura híbrida para la fase final.
 
 ## 🛠️ Instalación y Requisitos
 Para ejecutar los cuadernos de este repositorio, se requiere un entorno de Python 3.12+ con las siguientes librerías principales:
