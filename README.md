@@ -50,7 +50,7 @@ El proyecto está organizado en tres módulos principales para facilitar la repr
 │   # - Pruebas: Validación cruzada y métricas de eventos (Event-RMSE).
 │
 └── README.md
-
+```
 ---
 
 ## 📡 Detalle del Módulo de Adquisición (01_adquisicion_datos)
