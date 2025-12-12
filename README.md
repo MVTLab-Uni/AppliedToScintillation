@@ -31,13 +31,13 @@ El proyecto está organizado en tres módulos principales para facilitar la repr
 │   └── Tesis_Maestria_Borrador.docx  # Documento formal de la tesis (Versión Word)
 │
 ├── 📁 01_adquisicion_datos/
-│   ├── descargar_data_estaciones.ipynb
-│   ├── parser_omniweb.py
-│   └── generador_dataset_crudo.py
-│   # Scripts para:
-│   # - Conexión con LISN, OMNIWeb y ROJ.
-│   # - Descarga de logs de receptores GNSS.
-│   # - Consolidación del Dataset de "Data Cruda" multisatelital.
+│   │   # Módulo ETL para la base de datos LISN/IGP
+│   ├── descargaDATOSANUAL.py
+│   ├── descomprimirDATOS.py
+│   ├── generarDATASET.py
+│   │
+│   └── notebooks_exploratorios/
+│       └── descargar_data_estaciones.ipynb
 │
 ├── 📁 02_metodologia_ds/
 │   ├── 01_limpieza_preprocesamiento.ipynb
@@ -50,3 +50,41 @@ El proyecto está organizado en tres módulos principales para facilitar la repr
 │   # - Pruebas: Validación cruzada y métricas de eventos (Event-RMSE).
 │
 └── README.md
+
+## 📡 Detalle del Módulo de Adquisición (01_adquisicion_datos)
+Este directorio contiene los scripts Python encargados del Pipeline ETL para construir el dataset crudo a partir de la red de sensores LISN:
+
+*  descargaDATOSANUAL.py (Extracción):
+
+Implementa el cliente jrodb para conectar con el servidor CKAN del Radio Observatorio de Jicamarca.
+
+Automatiza la descarga masiva de logs anuales y mensuales de estaciones GNSS específicas (Jicamarca, Piura, Huancayo, etc.).
+
+* descomprimirDATOS.py (Transformación Física):
+
+Script de automatización que recorre recursivamente los directorios descargados.
+
+Ejecuta la descompresión por lotes de archivos binarios/logs (.gz, .Z) preparándolos para el procesamiento.
+
+* generarDATASET.py (Parsing y Estructuración):
+
+Parser Septentrio: Lee e interpreta la estructura de los logs de receptores GNSS.
+
+Conversión Temporal: Transforma formatos de tiempo nativos a datetime estándar UTC.
+
+Extracción de Features: Filtra y extrae las variables críticas (S4, Azimuth, Elevacion, ID_Satelite) y consolida millones de registros en un único archivo CSV ("Data Cruda") listo para la fase de Ciencia de Datos.
+
+## 🛠️ Instalación y Requisitos
+Para ejecutar los cuadernos de este repositorio, se requiere un entorno de Python 3.12+ con las siguientes librerías principales:
+
+Bash
+
+pip install tensorflow numpy pandas matplotlib scikit-learn seaborn scipy
+
+## ✒️ Autor
+
+Alexander Olmedo Valdez Portocarrero
+
+Maestría en Ciencias de la Computación
+
+Universidad Nacional de Ingeniería (UNI) - Lima, Perú.
