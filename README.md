@@ -100,6 +100,15 @@ Extracción de Features: Filtra y extrae las variables críticas (S4, Azimuth, E
     * **Validación de la Función de Costo:** Demuestra empíricamente cómo la *Loss Asimétrica* reduce el error en los picos ($S_4 > 0.6$) comparado con el MSE estándar.
     * **Resultados:** Genera las métricas comparativas (RMSE Global vs. Event-RMSE) que justifican la elección de la arquitectura híbrida para la fase final.
 
+* **`N2_S4_MAESTRIA_PROCESAMIENTO.ipynb` (Pipeline Final - Pronóstico Multi-Step):**
+    Este cuaderno contiene la **implementación definitiva de la propuesta de tesis**. A diferencia de los enfoques anteriores, aquí se despliega una arquitectura **Sequence-to-Sequence (Seq2Seq)** capaz de predecir una trayectoria futura completa (vector de 20 minutos) en lugar de un solo punto.
+    
+    **Características Avanzadas Implementadas:**
+    * **Generación de Tensores Multi-Step:** Algoritmo de ventaneo inteligente con validación de huecos (*Gap Control*), asegurando continuidad temporal estricta en las secuencias de entrada ($X$) y salida ($Y$).
+    * **Arquitectura Encoder-Decoder:** Implementación de una red **Bi-LSTM Profunda** (Bidireccional) con capas de *BatchNormalization* para estabilizar el aprendizaje de secuencias largas.
+    * **Weighted Focal Loss (Híbrida):** Integración matemática de la función de costo asimétrica que penaliza la subestimación y focaliza el gradiente en eventos difíciles ($S_4 > 0.6$).
+    * **Evaluación de Trayectorias:** Visualización y métricas de rendimiento sobre vectores completos, permitiendo analizar la coherencia de fase y la capacidad del modelo para anticipar la morfología de la tormenta.
+
 ## 🛠️ Instalación y Requisitos
 Para ejecutar los cuadernos de este repositorio, se requiere un entorno de Python 3.12+ con las siguientes librerías principales:
 
